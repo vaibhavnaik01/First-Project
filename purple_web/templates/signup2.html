@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'styles.css' %}"> {% endcomment %}
+</head>
+<style>
+    body{ 
+     background-image: url('https://media.istockphoto.com/id/1373119829/photo/abstract-blockchain-technology-background.jpg?b=1&s=612x612&w=0&k=20&c=GPg_qLv8A39jjWFHNeUi0fxPnq7Dl8C-cpA2I2zl4Cg='); 
+     background-image: url('../static/images/MicrosoftTeams-image (7).png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    } 
+  h1{
+    color:#5600E8;
+    text-align:center;
+    font-family: Arial, sans-serif;
+  }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      
+    
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+      
+    }
+  
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      margin-top:0px;
+      font-weight: bold;
+      margin-left:20px;
+      font-size:17px;
+      color:#5600E8;
+      font-weight: bold;
+      
+    }
+  
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"] {
+      width: 76%;
+      padding: 10px;
+      margin-left:20px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      
+    }
+  
+    form .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  
+    form input[type="submit"] {
+      display: block;
+      margin: 0 auto;
+      width:38%; 
+      {% comment %} width: 100%; {% endcomment %}
+      background-color: #5600E8;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family:Arial, sans-serif;
+      fon-size:15px;
+    }
+  
+    form input[type="submit"]:hover {
+      background-color: #8852ff;
+    } 
+    {% comment %} #45a049; {% endcomment %}
+    form a {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: blue;
+    }
+  
+    form small {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .login{
+        margin-top:5%;
+        text-decoration:None;
+        
+    }
+    .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+        font-family: Arial, sans-serif;
+      }
+    
+      .button-link:hover {
+        background-color: green;
+      }
+      .field{ 
+        {% comment %} font-family: Arial, sans-serif; {% endcomment %}
+        font-weight:normal;
+        font-size:12px;
+        margin-top:7%;
+        margin-bottom:10%; 
+        {% comment %} opacity:0.5; {% endcomment %}
+      
+      #valid{
+        margin-left:120px;
+        text-align:center;
+      }
+      #lgn{
+        margin-left:10px;
+        font-family: Arial, sans-serif;
+        font-size:14px;
+        text-decoration:none;
+        
+      }
+      .sgn{
+        font-size:18px;
+      }
+      .center{
+        color:green;
+        text-align:center;
+        font-size:18px;
+        margin-top:10px
+        fornt-weight:body;
+      }
+  </style>
+  <body>
+  <form class='field' action="" method="post" novalidate> 
+        <h1>Create An Account</h1>
+    {% csrf_token %}
+    {% for fm in form %}
+    
+    {{fm.label_tag}} {{fm}} {{fm.errors | striptags}} <br><br>
+    {% endfor %}
+    <div>
+    <input class="sgn" type="submit" value="Create Account">
+    <a id="lgn" href=" {% url 'login' %}">Already have an account?</a>
+
+    {% if messages %}
+    <div class="center">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+    </div>
+    </form> 
+         {% if messages %} 
+        {% for message in messages %}
+        <small  {% if message.tags %} class='{{message.tags}} ' {% endif %}>{{message}} </small>
+    {% endfor %}
+    {% endif %} 
+
+</body>
+</html>
+
+

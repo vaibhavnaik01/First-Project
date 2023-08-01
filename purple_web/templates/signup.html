@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+
+<body>
+
+    <div class="grid-container">
+
+        <div class="image-container">
+
+
+            <img src="{% static '/images/MicrosoftTeams-image (9).png' %}" alt="Your Image" width="87%" height=80%>
+
+        </div>
+
+        <div class="form-container">
+
+            <form class='field' action="" method="post" novalidate>
+
+                <h1 style="margin-bottom:50px;">Sign Up</h1>
+                {% csrf_token %}
+               {% for fm in form %}
+                   {{ fm.fields }} {{ fm }} {{ fm.errors | striptags }} <br><br>   
+                {% endfor %}
+                <div>
+                  <input class="sgn" type="submit" value="Sign Up">
+                  <a id="lgn" href=" {% url 'login' %}">Already have an account?</a>               
+                </div>
+                {% if messages %}
+
+                    <div class="center">
+                        {% for message in messages %}
+                            <div class="message {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

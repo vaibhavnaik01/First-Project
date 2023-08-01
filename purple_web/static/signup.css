@@ -1,0 +1,121 @@
+body { 
+    background-color: #f5f5f5; 
+    
+    background-image: url('../static/images/MicrosoftTeams-image (7).png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;    
+  }
+ .grid-container {
+ display: grid;
+ grid-template-columns: repeat(12, 1fr);
+ grid-gap: 10px;
+ }
+.image-container {
+   grid-column: span 6;
+   text-align: center;
+  }
+.form-container {
+  grid-column: span 6;
+ }
+ img{
+  
+  margin-top:130px;
+  margin-left:110px;
+  margin-right:30px;
+ }
+.field{
+  text-align:center;
+  border:1px solid white;
+  border-radius: 50px;
+  
+  width:45%;
+  color:white;
+  margin-top:119px;
+  margin-left:190px;
+  margin-right:30px;
+  height:83%;
+  
+  
+}
+.sgn{
+  margin-bottom:20px;
+}
+
+
+form .error-message {
+
+  color: red;
+
+  font-size: 12px;
+
+  margin-top: 5px;
+
+}
+form input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  width:48%; 
+  
+  background-color: #42b72a; 
+
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family:Arial, sans-serif;
+  font-size:15px;
+  margin-top:20px;
+  text-align: center;
+  /* margin-right:px; */
+
+}
+
+
+
+form input[type="submit"]:hover {
+
+  background-color: #8852ff;
+
+} 
+
+
+form a {
+
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color:wheat;
+  font-size:20px;
+
+}
+
+#lgn{
+
+  margin-top:5%;
+  text-decoration:None;
+
+ 
+
+}
+form label {
+
+  display: block;
+  font-weight: bold;
+  
+
+}
+
+
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 50%;
+  padding: 7px;
+  margin-left:20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}

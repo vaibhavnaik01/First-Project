@@ -1,0 +1,33 @@
+body { background-color: #f5f5f5; 
+    background-image: url('https://media.istockphoto.com/id/1370873338/photo/businesswoman-wearing-vr-headset-running-a-business-meeting-at-home.jpg?b=1&s=612x612&w=0&k=20&c=KB83lTonW0LQow_N9-hw-n7kTZO871wa0vWnPjxf9n0='); 
+    background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;    }
+
+    .grid-container {
+
+        display: grid;
+
+        grid-template-columns: repeat(12, 1fr);
+
+        grid-gap: 10px;
+
+    }
+
+
+    .image-container {
+
+        grid-column: span 6;
+
+        /* Adjust this based on the size of your image */
+
+        text-align: center;
+
+    }
+
+
+
+
+    .form-container {
+
+        grid-column: span 6;
+
+    }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Record Found</title>
+</head>
+<style>
+    h3{
+        color:#5600E8;
+        font-family: Arial, sans-serif;
+        margin-top:5%;
+        margin-left:10%;
+        display:block;
+      }
+      ul{
+        margin-left:10%;
+        fon-size:12px;
+        font-family: Arial, sans-serif;
+      }
+</style>
+<body>
+    {% if formatted_strings %}
+    <h3>Your Details:</h3>
+    <ul>
+        {% for formatted_string in formatted_strings %}
+            <li class='content'>{{ formatted_string }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Page</title>
+</head>
+<body>
+    <h1>Summary of Submitted Data</h1>
+    <ul>
+        {% for key, value in data.items %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Page</title>
+    <style>
+        body {
+            background-image: url('../static/images/MicrosoftTeams-image (7).png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            color:white;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            
+        }
+        {% comment %} body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        } {% endcomment %}
+
+        h1 {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            {% comment %} color: #333; {% endcomment %}
+            color:white;
+        }
+.grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+        border: 2px solid white; 
+        border-radius: 30px; 
+        padding: 10px; 
+        
+        }
+
+        .grid-item {
+            {% comment %} background-color: #fff; {% endcomment %}
+            padding: 20px;
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            color:white;
+        }
+
+        .grid-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        strong {
+            {% comment %} color: #555; {% endcomment %}
+        }
+    </style>
+</head>
+<body>
+   
+        <a style='text-decoration:none;color:wheat;margin-left:50%;font-size:20px;' href="{% url 'profile' %}"> Home</a>
+   
+    <h1>Summary of Submitted Data</h1>
+    <div class="grid-container">
+        {% for key, value in data.items %}
+            <div class="grid-item">
+                <strong>{{ key }}:</strong> {{ value }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

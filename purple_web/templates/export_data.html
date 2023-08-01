@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Export data from table</title>
+    <style>
+        .form-box {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 15%;
+        }
+ 
+        .form-box .er {
+            color: red;
+            margin-bottom: 10px;
+        }
+ 
+        .form-box .form-boxh1 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 19px;
+            color: #5600E8;
+            font-weight: bold;
+        }
+        .form-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-box .form-field .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .signup {
+            margin-top: 5%;
+            display: block;
+            margin: auto;
+            text-decoration: none;
+            background-color: #5600E8;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+        }
+        .signup:hover {
+            background-color: #8852ff;
+        }
+
+ 
+
+        body {
+
+            background-image: url('/background.png.jpg');
+
+        }
+
+    </style>
+</head>
+<body>
+    <form class="form-box" method="POST">
+        {% csrf_token %}
+        <label for="full_name">Full Name:</label>
+        <input class="form-field" type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <input class="form-field" type="email" id="email" name="email" placeholder="Enter your email" required>
+        <br><br>
+        <button class="signup" type="submit">Submit</button>
+    </form>
+    <br><br>
+</body>
+</html>

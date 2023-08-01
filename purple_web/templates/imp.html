@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Form</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Dosis');
+
+:root {
+  /* generic */
+  --gutterSm: 0.4rem;
+  --gutterMd: 0.8rem;
+  --gutterLg: 1.6rem;
+  --gutterXl: 2.4rem;
+  --gutterXx: 7.2rem;
+  --colorPrimary400: #7e57c2;
+  --colorPrimary600: #5e35b1;
+  --colorPrimary800: #4527a0;
+  --fontFamily: "Dosis", sans-serif;
+  --fontSizeSm: 1.2rem;
+  --fontSizeMd: 1.6rem;
+  --fontSizeLg: 2.1rem;
+  --fontSizeXl: 2.8rem;
+  --fontSizeXx: 3.6rem;
+  --lineHeightSm: 1.1;
+  --lineHeightMd: 1.8;
+  --transitionDuration: 300ms;
+  --transitionTF: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  /* floated labels */
+  --inputPaddingV: var(--gutterMd);
+  --inputPaddingH: var(--gutterLg);
+  --inputFontSize: var(--fontSizeLg);
+  --inputLineHeight: var(--lineHeightMd);
+  --labelScaleFactor: 0.8;
+  --labelDefaultPosY: 50%;
+  --labelTransformedPosY: calc(
+    (var(--labelDefaultPosY)) -
+    (var(--inputPaddingV) * var(--labelScaleFactor)) -
+    (var(--inputFontSize) * var(--inputLineHeight))
+  );
+  --inputTransitionDuration: var(--transitionDuration);
+  --inputTransitionTF: var(--transitionTF);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  color: #455A64;
+  background-color: #7E57C2;
+  font-family: var(--fontFamily);
+  font-size: var(--fontSizeMd);
+  line-height: var(--lineHeightMd);
+  background-image: url('https://media.istockphoto.com/id/1414981473/photo/futuristic-flight-through-a-digital-line-landscape-blue-dust-particle-abstract-background-3d.jpg?b=1&s=612x612&w=0&k=20&c=ECQNtq0EP3Oa_hhy8MjIt8jm_8OccjjbAA1MW9lp3zo=');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Wrapper {
+  flex: 0 0 80%;
+  max-width: 80%;
+}
+
+.Title {
+  margin: 0 0 var(--gutterXx) 0;
+  padding: 0;
+  color: #fff;
+  font-size: var(--fontSizeXx);
+  font-weight: 400;
+  line-height: var(--lineHeightSm);
+  text-align: center;
+  text-shadow: -0.1rem 0.1rem 0.2rem var(--colorPrimary800);
+
+}
+
+.Input {
+  position: relative;
+}
+
+.Input-text {
+  display: block;
+  margin: 0;
+  padding: var(--inputPaddingV) var(--inputPaddingH);
+  color: inherit;
+  width: 98%;
+  font-family: inherit;
+  font-size: var(--inputFontSize);
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  border: none;
+  border-radius: 0.4rem;
+  transition: box-shadow var(--transitionDuration);
+}
+
+.Input-text::placeholder {
+  color: #B0BEC5;
+
+}
+
+.Input-text:focus {
+  outline: none;
+  box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
+}
+
+.Input-label {
+  display: block;
+  position: absolute;
+  bottom: 50%;
+  left: 1rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--inputFontSize);
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  opacity: 0;
+  transform:
+    translate3d(0, var(--labelDefaultPosY), 0)
+    scale(1);
+  transform-origin: 0 0;
+  transition:
+    opacity var(--inputTransitionDuration) var(--inputTransitionTF),
+    transform var(--inputTransitionDuration) var(--inputTransitionTF),
+    visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF),
+    z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF);
+}
+
+.Input-text:placeholder-shown + .Input-label {
+  visibility: hidden;
+  z-index: -1;
+}
+
+.Input-text:not(:placeholder-shown) + .Input-label,
+.Input-text:focus:not(:placeholder-shown) + .Input-label {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+  transform:
+    translate3d(0, var(--labelTransformedPosY), 0)
+    scale(var(--labelScaleFactor));
+  transition:
+    transform var(--inputTransitionDuration),
+    visibility 0ms,
+    z-index 0ms;
+}
+#prevSlide{
+margin-right: 40px;
+height:30px;
+width:80px;
+font-size:inherit;
+margin-bottom:-30px;
+margin-bottom:200px;
+margin-top:10px;
+
+
+}
+.nextSlide{
+    margin-left:  1000px;
+    height:30px;
+    width:80px;
+    font-size:inherit;
+margin-bottom:-30px;
+}
+.Button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 50px;
+}
+.Tooltip {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 10px;
+  width: 400px;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  top: 70%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+<!--  background-color:purple;-->
+<!--  color:white;-->
+}
+
+.Input-container {
+  position: relative;
+}
+
+.Input-heading {
+  color: #fff;
+  cursor: pointer;
+  text-decoration:underline;
+}
+
+.Input-heading:hover + .Tooltip {
+  display: block;
+}
+
+.Input {
+  position: relative;
+}
+
+.Input-text {
+  display: block;
+  margin: 0;
+  padding: var(--inputPaddingV) var(--inputPaddingH);
+  color: inherit;
+  width: 98%;
+  font-family: inherit;
+  font-size: var(--inputFontSize);
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  border: none;
+  border-radius: 0.4rem;
+  transition: box-shadow var(--transitionDuration);
+}
+
+.Input-text::placeholder {
+  color: #B0BEC5;
+}
+
+.Input-text:focus {
+  outline: none;
+  box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
+}
+
+.Input-label {
+  display: block;
+  position: absolute;
+  bottom: 50%;
+  left: 1rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: var(--inputFontSize);
+  font-weight: inherit;
+  line-height: var(--inputLineHeight);
+  opacity: 0;
+  transform:
+    translate3d(0, var(--labelDefaultPosY), 0)
+    scale(1);
+  transform-origin: 0 0;
+  transition:
+    opacity var(--inputTransitionDuration) var(--inputTransitionTF),
+    transform var(--inputTransitionDuration) var(--inputTransitionTF),
+    visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF),
+    z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF);
+}
+
+.Input-text:placeholder-shown + .Input-label {
+  visibility: hidden;
+  z-index: -1;
+}
+
+.Input-text:not(:placeholder-shown) + .Input-label,
+.Input-text:focus:not(:placeholder-shown) + .Input-label {
+  visibility: visible;
+  z-index: 1;
+  opacity: 1;
+  transform:
+    translate3d(0, var(--labelTransformedPosY), 0)
+    scale(var(--labelScaleFactor));
+  transition:
+    transform var(--inputTransitionDuration),
+    visibility 0ms,
+    z-index 0ms;
+}
+
+
+
+.carousel-control:focus {
+  outline: none;
+}
+
+
+.carousel-control-prev {
+  background-color: #FF4C60;
+  color: #FFF;
+  box-shadow: 0 4px 8px rgba(255, 76, 96, 0.3);
+<!--   font-size: 1px;-->
+    width:60%;
+
+  border: none;
+  border-radius: 30px;
+}
+
+
+.carousel-control-next {
+  background-color: #4CAF50;
+  color: #FFF;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+  width:6%;
+
+  border: none;
+  border-radius: 30px;
+}
+
+
+.arrow {
+  margin-right: 0px;
+}
+
+
+.carousel-control:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.carousel-control:active {
+  transform: scale(0.95);
+}
+
+
+</style>
+<body>
+    <div style="margin-bottom:35%;margin-right:30px;color:white">
+        {% comment %} <h1>Home Page</h1> {% endcomment %}
+        <h2 style="color:orange; font-weight:bold;">Welcome {{name}} </h2>
+         {% if messages %}
+            {% for message in messages %}
+            <small style='color:#00FF00; font-size:20px;'  {% if message.tags %} class='{{message.tags}} ' {% endif %}>{{message}} </small>
+        {% endfor %}
+        {% endif %}
+        <a style="margin-left:10px;text-decoration:none;font-size:20px;color:white"href="{% url 'logout' %} "> Logout</a>
+    </div>
+
+    
+  <div class="Wrapper">
+    
+    <form method="post">
+      {% csrf_token %}
+
+
+      <div class="Carousel">
+
+        <div class="Carousel-slides">
+          <div class="Carousel-item active">
+            <div class="Input-container">
+  <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Name of Referee</h1>
+
+  </div>
+  <div class="Input">
+    <input type="text" name="first_name" class="Input-text" placeholder="Name of Referee" required>
+    <label for="input1" class="Input-label">Name of Referee</label>
+  </div>
+</div>
+
+
+          <!-- Add other form fields here -->
+
+          <div class="Carousel-item active">
+           <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Country of Residence</h1>
+          </div>
+          <div class="Input">
+            <input type="text" name="country_of_residence" class="Input-text" placeholder="Country of Residence" required>
+            <label for="input2" class="Input-label">Country of Residence</label>
+          </div>
+        </div>
+           <div class="Carousel-item active">
+            <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Type</h1>
+          </div>
+          <div class="Input">
+              <input type="text" name="type" class="Input-text" placeholder="Type" required>
+              <label for="input3" class="Input-label">Type</label>
+            </div>
+          </div>
+
+
+
+          <div class="Carousel-item active">
+           <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px;text-decoration:None;" >Email ID</h1>
+          </div>
+         <div class="Input">
+              <input type="email" name="email_id" class="Input-text" placeholder="Email ID" required>
+              <label for="input4" class="Input-label">Email ID</label>
+            </div>
+          </div>
+
+
+
+
+          <div class="Carousel-item active">
+           <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px;text-decoration:None;" >Phone Number</h1>
+          </div>
+          <div class="Input">
+              <input  type="number" name="phone_number" class="Input-text" placeholder="Enter Your Phone Number" required>
+              <label for="input5" class="Input-label">Phone Number</label>
+          </div>
+          </div>
+           <div class="Carousel-item active">
+            <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Current Company</h1>
+          </div>
+         <div class="Input">
+              <input type="text" name="current_company" class="Input-text" placeholder="Enter Your current company" required>
+              <label for="input6" class="Input-label">Current Company</label>
+         </div>
+         </div>
+
+           <div class="Carousel-item active">
+          <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Current Role</h1>
+          </div>
+         <div class="Input">
+              <input  type="text" name="current_role" class="Input-text" placeholder="Enter Your Current Role" required>
+              <label for="input7" class="Input-label">Current Role</label>
+            </div>
+          </div>
+           <div class="Carousel-item active">
+          <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Current Worked at</h1>
+          </div>
+         <div class="Input">
+              <input type="text" name="company_worked_at" class="Input-text" placeholder="Enter Your Current Worked at" required>
+              <label for="input8" class="Input-label">Current Worked at</label>
+            </div>
+          </div>
+
+        <div class="Carousel-item active">
+        <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Title at Company</h1>
+        </div>
+         <div class="Input">
+              <input type="text" name="title_at_company" class="Input-text" placeholder="Enter Your Title at Company" required>
+              <label for="input9" class="Input-label">Title at Company</label>
+         </div>
+        </div>
+
+
+        <div class="Carousel-item active">
+        <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Relationship Description</h1>
+        </div>
+         <div class="Input">
+              <input type="text" name="relationship_description" class="Input-text" placeholder="Relationship Description" required>
+              <label for="input10" class="Input-label">Relationship Description</label>
+         </div>
+        </div>
+
+
+
+        <div class="Carousel-item active">
+        <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px; text-decoration:None;" >Duration of Knowing</h1>
+        </div>
+         <div class="Input">
+              <input type="text" name="duration_of_knowing" class="Input-text" placeholder="Duration of Knowing" required>
+              <label for="input11" class="Input-label">Duration of Knowing</label>
+         </div>
+        </div>
+
+
+        <div class="Carousel-item active">
+        <div class="Input-container">
+          <h1 class="Input-heading"style="margin-left:500px;margin-bottom:50px;" >LinkedIn Url</h1>
+        </div>
+         <div class="Input">
+             <input type="text" name="linked_in_url" class="Input-text" placeholder="LinkedIn URL" required>
+             <label for="input12" class="Input-label">LinkedIn URL</label>
+         </div>
+         </div>
+
+
+<!--         <div class="Carousel-item active">-->
+<!--        <div class="Input-container">-->
+<!--          <h1 class="Input-heading"style="margin-left:280px;margin-bottom:50px; text-decoration:None;" >CV outlining your career and any relevant publication history</h1>-->
+<!--        <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 1.1 A summary of what you have done as a professional</h3>-->
+<!--        </div>-->
+<!--         <div class="Input">-->
+<!--             <input type="text" name="linked_in_url" class="Input-text" placeholder="LinkedIn URL" required>-->
+<!--             <label for="input12" class="Input-label">LinkedIn URL</label>-->
+<!--         </div>-->
+<!--         </div>-->
+
+
+
+
+
+
+
+
+           <div class="Carousel-item active">
+            <h1 class="Title">CV outlining your career and any relevant publication history</h1>
+               <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 1.1 A summary of what you have done as a professional</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q1_1" class="Input-text" placeholder="Q1_1" required>
+              <label for="input13" class="Input-label">Q1_1</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+               <div>
+            <h1 class="Title">CV outlining your career and any relevant publication history</h1>
+               <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 1.2 A list of your roles and the impact you have made while in the position.</h3>
+            </div>
+                   <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q1_2" class="Input-text" placeholder="Q1_2" required>
+              <label for="input14" class="Input-label">Q1_2</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">CV outlining your career and any relevant publication history</h1>
+                <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q1.3 Your achievements in a separate paragraph, especially if connected to any international <br> projects. Make sure that they are related to your professional field. <br> Show how your achievements  have left a mark on the industry.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q1_3" class="Input-text" placeholder="Q1_3" required>
+              <label for="input15" class="Input-label">Q1_3</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+               <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 2.1 Why do you want to come to the UK?.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_1" class="Input-text" placeholder="Q2_1" required>
+              <label for="input16" class="Input-label">Q2_1</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+           <h1 class="Title">Personal Statement (1000 words) </h1>
+               <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 2.2 What is your planned occupation in the UK?.</h3>
+            <div class="Input">
+              <input type="text" name="Q2_2" class="Input-text" placeholder="Q2_2" required>
+              <label for="input17" class="Input-label">Duration of Knowing</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+               <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:25px;font-weight:normal;">Q 2.3 How will the UK digital technology sector benefit from your work? (Examples of this might  include the <br>technological advances you will bring, the creation or new markets, the planned growth of a digital <br> technology company, the activities you will take part in outside of your direct occupation.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_3" class="Input-text" placeholder="Q2_3" required>
+              <label for="input18" class="Input-label">Duration of Knowing</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 2.4 What are your short term plans?.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_4" class="Input-text" placeholder="Q2_4" required>
+              <label for="input19" class="Input-label">Q2_4</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 2.5 What are your long term plans?.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_5" class="Input-text" placeholder="Q2_5" required>
+              <label for="input20" class="Input-label">Q2_5</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 2.6 Which region or city of the UK are you planning to live in?.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_6" class="Input-text" placeholder="Q2_6" required>
+              <label for="input21" class="Input-label">Q2_6</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+            <h1 class="Title">Personal Statement (1000 words) </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 2.7 Why are you moving from Tier-2 to Tier-1.</h3>
+            <div class="Input">
+              <input style="padding: 23px;" type="text" name="Q2_7" class="Input-text" placeholder="Q2_7" required>
+              <label for="input22" class="Input-label">Q2_7</label>
+            </div>
+          </div>
+
+           <div class="Carousel-item active">
+             <h1 class="Title">Recommendations </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 3.1 Recommendation 1.</h3>
+            <div class="Input">
+              <input type="text" name="Q3_1" class="Input-text" placeholder="Q3_1" required>
+              <label for="input23" class="Input-label">Q3_1</label>
+            </div>
+          </div>
+
+             <div class="Carousel-item active">
+            <h1 class="Title">Recommendations </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 3.2 Recommendation 2.</h3>
+            <div class="Input">
+              <input type="text" name="Q3_2" class="Input-text" placeholder="Q3_2" required>
+              <label for="input24" class="Input-label">Q3_2</label>
+            </div>
+          </div>
+            <div class="Carousel-item active">
+            <h1 class="Title">Recommendations </h1>
+              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 3.3 Recommendation 3.</h3>
+            <div class="Input">
+              <input type="text" name="Q3_3" class="Input-text" placeholder="Q3_3" required>
+              <label for="input25" class="Input-label">Q3_3</label>
+            </div>
+          </div>
+
+            <div class="Carousel-item active">
+            <h1 class="Title" style="margin-bottom:30px;">Proof of recognition for work outside your immediate occupation that has contributed to the advancement of the digital technology sector. For example, evidence that you have gone beyond your day to day job to engage in an activity that contributes to the advancement of the sector. </h1>
+<!--              <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:15px;font-weight:normal;">Q 4.1 EVIDENCE (Leading the growth of a product-led digital technology company, product or team inside a digital technology company;-->
+
+<!--Leading the growth of a product-led digital technology company, product or team inside a digital technology company;-->
+<!--Leading the marketing or business development at a product-led digital; technology company, demonstrably enabling substantial revenue and/or customer growth or major commercial success;-->
+<!--Leading the growth of a non-profit organisation or social enterprise with a specific focus on the digital technology sector;-->
+<!--Leading or being a significant contributor to a substantial open source project outside of applicant’s normal day-to-day job role;-->
+<!--Establishing, leading, or being a senior contributor to a large technology-led industry initiative outside of applicant’s normal day-to-day job role.)</h3>--><div class="Input">
+  <div class="Input-container">
+  <h3 class="Input-heading"style="margin-left:500px;margin-bottom:50px;" >Example</h3>
+  <div class="Tooltip" onmouseout="hideTooltip()">
+    <p>Leading the growth of a product-led digital technology company, product, or team inside a digital technology company;</p>
+    <p>Leading the marketing or business development at a product-led digital technology company, demonstrably enabling substantial revenue and/or customer growth or major commercial success;</p>
+    <p>Leading the growth of a non-profit organization or social enterprise with a specific focus on the digital technology sector;</p>
+    <p>Leading or being a significant contributor to a substantial open-source project outside of the applicant’s normal day-to-day job role;</p>
+    <p>Establishing, leading, or being a senior contributor to a large technology-led industry initiative outside of the applicant’s normal day-to-day job role.</p>
+  </div>
+  </div>
+      <div class="Input">
+        <textarea  style="padding: 23px;" type="text" name="Q4_1" class="Input-text" placeholder="Q4_1" required></textarea>
+        <label for="input27" class="Input-label">Q4_1</label>
+      </div>
+</div>
+</div>
+
+            <div class="Carousel-item active">
+            <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;">Q 5.1 Exceptional Promise: at least 1 example of innovation as a founder of a product-led digital technology company or as an employee working on a new digital field or concept.</h3>
+                <div class="Input-container">
+               <div class="Input">
+              <input type="text" name="Q5_1" class="Input-text" placeholder="Q5_1" required>
+              <label for="input28" class="Input-label">Q5_1</label>
+            </div>
+          </div>
+            </div>
+           <div class="Carousel-item active">
+            <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;"> Q 5.2 Exceptional Talent: a proven track record for innovation as a founder, senior executive, or employee.</h3>
+           <div class="Input-container">
+  <h2 class="Input-heading"style="margin-left:500px;margin-bottom:50px;" class="Input-heading">Example</h2>
+  <div class="Tooltip" onmouseover="showTooltip()" onmouseout="hideTooltip()">
+    <p>(Example: Extract from a pending/approved patent application;</p>
+    <p>For businesses — the last set of audited accounts, projections for the current financial year, articles of association, sales with customer numbers, an extract of an investment agreement. These pieces of evidence should be backed by recommendation letters that describe innovative projects within the company and highlight the impact they’ve left on the business/its product;
+   Evidence of employment contract with salary information including any bonus and equity options and history of earnings.
+        Evidence of domestic and/or international sales should show customer numbers for each country in which the company is operating, including a ranking of your distribution channels with a breakdown of when these sales were achieved for each channel (i.e. online, physical retail, 3rd party distributors, resellers etc.).</p>
+    <p>Documentation on product designs or architecture diagram clearly showing your contribution.  Please ensure this evidence is no more than three A4 pages long and demonstrates your personal work, not that of the company or team of individuals;)</p>
+  </div>
+  <div class="Input">
+    <textarea style="padding: 23px;" type="text" name="Q5_2" class="Input-text" placeholder="Q5_2" required></textarea>
+    <label for="input29" class="Input-label">Q5_2</label>
+  </div>
+</div>
+
+          </div>
+ <div class="Carousel-item active">
+            <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;"> Q 6.1 At least 1 example of proof of recognition for work outside your immediate occupation that has contributed to the advancement of the sector. Have undertaken continuous learning/mastery of new digital skills (commercial or technical) throughout your career.</h3>
+           <div class="Input-container">
+  <h2 class="Input-heading"style="margin-left:500px;margin-bottom:50px;" class="Input-heading">Example</h2>
+  <div class="Tooltip" onmouseover="showTooltip()" onmouseout="hideTooltip()">
+    (Example: A letter of support from a local charity foundation
+Evidence of having continuously updated technical or commercial skills showing clear progression and achievement. This can be in the form of various projects or courses completed (whether at university or independently), which demonstrate a clear progression either in-depth or breadth;
+"• GitHub profile demonstrating active participation in an open source project;
+• Stack Overflow profile showing significant contribution to discussions around code;"
+Video recordings of public talks, diplomas/certificates from tech event organisers proving your participation, screenshots that demonstrate your role as a speaker at a tech conference (the conference should be attended by no less than a 100 people).
+Evidence of expertise and maintaining up-to-date knowledge of your sector trends, as shown for example by a relevant qualification, or by a talk in a prestigious conference (you should provide conference details and number of actual attendees, not registrants)
+  </div>
+  <div class="Input">
+    <textarea style="padding: 23px;" type="text" name="Q6_1" class="Input-text" placeholder="Q6_1" required></textarea>
+    <label for="input29" class="Input-label">Q6_1</label>
+  </div>
+</div>
+ </div>
+<!--           <div class="Carousel-item active">-->
+<!--&lt;!&ndash;            <h4 style="color:white;">EVIDENCE </h4>&ndash;&gt;-->
+<!--            <div class="Input">-->
+<!--              <input type="text" name="Q6_2" class="Input-text" placeholder="Q6_2" required>-->
+<!--              <label for="input31" class="Input-label">Q6_2</label>-->
+<!--            </div>-->
+<!--          </div>-->
+            <div class="Carousel-item active">
+            <h3 style="text-align:center;color:white;margin-bottom:50px;font-size:30px;font-weight:normal;"> Q 7.1 Have demonstrated exceptional ability in the field by making academic contributions through research published or otherwise endorsed by a research supervisor or other expert.</h3>
+           <div class="Input-container">
+  <h2 class="Input-heading"style="margin-left:500px;margin-bottom:50px;" class="Input-heading">Example</h2>
+  <div class="Tooltip" onmouseover="showTooltip()" onmouseout="hideTooltip()">
+    Example( You have authored a well-reviewed book on digital technology or on programming or published material in a professional or major trade publication.  You must include the title, date and evidence that you are the author of such published material and any necessary translation;
+Evidence of at least one significant contribution to the field in the form of a paper published in a top-tier peer-reviewed journal.  Research undertaken as part of an undergraduate or MSc thesis does not qualify for this criteria;
+Evidence of awards received for outstanding applied work, supported by excellent academic achievement (a first-class degree or distinction);
+A letter of support from a research supervisor or other expert in your area of expertise affirming their potential world-class standard.  This is in addition to the required letters of recommendation and must be written by another individual;
+Evidence of an award that has been granted by an organisation of a similar standing and distinction to the Royal Society in the UK, as well as the selection criteria for this award)
+  </div>
+  <div class="Input">
+    <textarea style="padding: 23px;" type="text" name="Q7_1" class="Input-text" placeholder="Q7_1" required></textarea>
+    <label for="input29" class="Input-label">Q7_1</label>
+  </div>
+</div>
+
+
+<!--            <div class="Carousel-item active">-->
+<!--            <h4 style="color:white;">EVIDENCE</h4>-->
+<!--            <div class="Input">-->
+<!--              <input type="text" name="Q7_2" class="Input-text" placeholder="Q7_2" required>-->
+<!--              <label for="input33" class="Input-label">Q7_2</label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          -->
+</div>
+        <button id="prevSlide" class="carousel-control carousel-control-prev" onclick="prevSlide()">
+  <span class="arrow">&#8249;</span> Back
+</button>
+<button class="nextSlide carousel-control carousel-control-next" onclick="nextSlide()">
+  Next <span class="arrow">&#8250;</span>
+</button>
+
+
+
+<!--        <div class="Button-container">-->
+<!--          <button type="submit">Submit</button>-->
+<!--        </div>-->
+      </div>
+    </form>
+  </div>
+
+  <script>
+    var slideIndex = 1;
+    showSlide(slideIndex);
+    
+    function prevSlide() {
+      showSlide(slideIndex -= 1);
+    }
+    
+    function nextSlide() {
+      if (slideIndex < document.getElementsByClassName("Carousel-item").length) {
+        showSlide(slideIndex += 1);
+      } else {
+        // Stop the slideshow when all slides have been completed
+        clearInterval(slideshowInterval);
+      }
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("Carousel-item");
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
+    
+    // Add event listeners for previous and next buttons
+    document.getElementById("prevSlide").addEventListener("click", function() {
+      prevSlide();
+    });
+    
+    document.getElementById("nextSlide").addEventListener("click", function() {
+      nextSlide();
+    });
+    
+    // Automatically move to the next slide every 3 seconds (adjust the interval as needed)
+    var slideshowInterval = setInterval(function() {
+      nextSlide();
+    }, 3000);
+    
+
+    
+  </script>
+</body>
+</html>

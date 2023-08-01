@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+{% comment %} <style>
+.er{
+    color:red;
+}
+
+
+  
+</style> {% endcomment %}
+
+</head>
+
+
+    <body>
+      <div class="container" >
+      <form class="form-box" action="" method="post" novalidate> 
+        <h4> Hey! Welcome back</h4>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          {% for error in form.non_field_errors %}
+            <p class="er">{{ error }}</p>
+          {% endfor %}
+        {% endif %}
+        
+        <div class="form-boxh1">
+          
+            <div class="form-field">
+              {% comment %} <label for="{{ form.username.id_for_label }}">Username:</label> {% endcomment %}
+              <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" placeholder="Enter your username" required>
+              <input type="{{ form.password.field.widget.input_type }}" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" placeholder="Enter your {{ form.password.label }}" required>
+           
+          
+          {% comment %} {% for fm in form %}
+            <div class="form-field"> {% endcomment %}
+              {% comment %} {{ fm.label_tag }} {% endcomment %}
+              {% comment %} {{ fm }} {% endcomment %}
+              <span class="error-message">{{ fm.errors | striptags }}</span>
+            {% comment %} </div> {% endcomment %} 
+          {% comment %} {% endfor %} {% endcomment %}
+        </div>
+        
+        <input type="submit" value="Login">
+        <div>
+        <a style='text-decoration:none;color:white;' href="{% url 'signup' %}"> <br> New user.?? <span class='span' style="width:10px;"> Sign Up</span></a>
+        </div>
+      
+      </form>
+      
+      
+      
+  </body>
+</html>

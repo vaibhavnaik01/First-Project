@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+</head>
+<style>
+  body { 
+    background-color: #f5f5f5; 
+   
+    background-image: url('../static/images/MicrosoftTeams-image (7).png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;    
+  }
+ .grid-container {
+ display: grid;
+ grid-template-columns: repeat(12, 1fr);
+ grid-gap: 10px;
+ }
+.image-container {
+   grid-column: span 6;
+   text-align: center;
+  }
+.form-container {
+  grid-column: span 6;
+ }
+ img{
+  
+  margin-top:80px;
+  margin-left:90px;
+  margin-right:30px;
+ }
+
+.sgn{
+  margin-bottom:20px;
+}
+
+
+form .error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+form input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  width:30%; 
+ 
+  background-color: #5600E8;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family:Arial, sans-serif;
+  font-size:15px;
+}
+
+
+
+form input[type="submit"]:hover {
+  background-color: #8852ff;
+} 
+
+
+form a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: wheat;
+}
+
+#lgn{
+  margin-top:5%;
+  text-decoration:None;
+
+ 
+
+}
+form label {
+  display: block;
+ 
+  font-weight: bold;
+ 
+
+}
+
+
+form input[type="date"],
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 50%;
+  padding: 7px;
+  margin-left:20px;
+  
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+}
+
+#box{
+  margin-top:153px;
+  margin-right:170px;
+  margin-left:90px;
+  height:400px;
+  border: 1px solid #ccc;
+  border-radius: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+}
+.nxt{
+  color:white;
+
+  background-color:#5dbea3;
+  font-size:inherit;
+  height:30px;
+  width:80px;
+  margin-left:170px;
+  margin-top:20px; 
+  text-align:center;
+  margin-right:20px;
+  border: none;
+  outline: none;
+}
+.back{
+  color:white;
+  
+  background: linear-gradient(66.95deg,#45c4f9,rgba(136,82,255,.81) 45.31%,#8852ff 99.48%);
+  text-align:center;
+  font-size:inherit;
+  height:30px;
+  width:80px; 
+  margin-top:20px; 
+  border: none;
+  outline: none;
+}
+.back:hover {
+  transform: scale(1.10);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+  background: linear-gradient(66.95deg,#45c4f9,rgba(136,82,255,.81) 45.31%,#8852ff 99.48%);
+}
+.nxt:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color:dark green;
+}
+textarea{
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  outline: none;
+  padding: 1em;
+  line-height: 1.4;
+  font-size: 18px;
+  overflow: hidden;
+   
+  }
+  .Input-text::placeholder {
+    color: white;
+    font-size:13px;
+    font-family:Arial,sanse-serif;
+  }
+  .Tooltip {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    top: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+  
+  }
+  
+  .Input-container {
+    position: relative;
+  }
+  
+  
+  
+  .Input-heading:hover + .Tooltip {
+    display: block;
+  }
+  
+</style>
+
+<body>
+
+    <div class="grid-container">
+
+    <div class="image-container">
+
+            
+    <div style="margin-right:400px;color:white">
+       
+        <h2 style="color:orange; font-weight:bold;">Welcome {{name}} </h2>
+         {% if messages %}
+            {% for message in messages %}
+            <small style='color:#00FF00; font-size:20px;'  {% if message.tags %} class='{{message.tags}} ' {% endif %}>{{message}} </small>
+        {% endfor %}
+        {% endif %}
+        
+        <a style="margin-left:10px;text-decoration:none;font-size:20px;color:white"href="{% url 'logout' %} "> Logout</a>
+    </div>
+
+            <img src="{% static '/images/MicrosoftTeams-image (9).png' %}" alt="Your Image" width="84%" height=auto;>
+
+        </div>
+
+        <div class="form-container">
+
+            <form class='field' action="" method="post" novalidate>
+
+
+
+                {% csrf_token %}
+
+                <div class="Wrapper">        
+                 <div class="Carousel">
+                <div class="Carousel-slides">
+                     
+
+                  <div class="Carousel-item active">
+                  <div class="Input-container">
+                    <div id="box" class="Input">
+                     
+                     
+                     
+                      <input style="width:71%;margin-top:27px;padding:7px;margin-left:40px;" type="text" name="Que1" id="Que1" class="Input-text" placeholder="Name of Referee" required>
+                      <input style="width:71%;margin-top:15px;padding:7px;margin-left:40px;" type="text" name="Que2" id="Que2" class="Input-text" placeholder="Country of Residence" required>
+                      <input style="width:71%;margin-top:15px;padding:7px;margin-left:40px;" type="email" name="Que3" id="Que3" class="Input-text" placeholder="Email ID" required>
+                      <input style="width:30.5%;margin-top:15px;margin-left:40px;padding:7px;" type="Date" name="Que4" id="Que4" class="Input-text" placeholder='DOB' required>
+                      <input style="width:30.5%;margin-left:20px;" type="text" name="Que8" id="Que8" class="Input-text" placeholder='Type' required>
+
+                      <input style="width:71%;margin-top:15px;margin-left:40px;padding:7px;" type="text" name="Que9" id="Que9" class="Input-text" placeholder='Phone Number' required>
+                      <input style="width:67.5%;margin-top:15px;margin-left:40px;padding:15px;" type="text" name="Que10" id="Que10" class="Input-text" placeholder='Current company name of the referee' required>
+                      <input style="width:67%;margin-top:15px;margin-left:40px;padding:15px;" type="text" name="Que11" id="Que11" class="Input-text" placeholder='Current Role/Title' required>
+                      {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="Carousel-item active">
+                  <div class="Input-container">
+                    <div id="box" class="Input">
+                      {% comment %} <h2 style="color:white;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;margin-left:20px;" for="input3" class="Input-label">First Name</h2> {% endcomment %}
+                      <input style="width:71%;margin-top:39px;padding:24px;margin-left:32px;" type="text" name="Que12" id="Que12" class="Input-text" placeholder='Company worked together at' required>
+                      {% comment %} <input style="width:30%;margin-left:20px;" type="text" name="Que4" id="Que4" class="Input-text" placeholder='Last Name' required> {% endcomment %}
+                      {% comment %} <input style="width:71%;margin-top:15px;padding:7px;margin-left:40px;" type="date" name="Que5" id="Que5" class="Input-text" required> {% endcomment %}
+                      <input style="width:71%;margin-top:17px;padding:24px;margin-left:32px;" type="text" name="Que13" id="Que13" class="Input-text" placeholder="Title at company worked together at" required>
+                      {% comment %} <input style="width:71%;margin-top:15px;padding:7px;margin-left:40px;" type="text" name="Que14" id="Que14" class="Input-text" placeholder="How do they know you(add 4-5 bullet points per person)" required> {% endcomment %}
+                      <input style="width:71%;margin-top:17px;margin-left:32px;padding:24px;" type="text" name="Que14" id="Que14" class="Input-text" placeholder='Since when do they know you' required>
+                      <input style="width:71%;margin-top:17px;margin-left:32px;padding:24px;" type="text" name="Que15" id="Que15" class="Input-text" placeholder='Linked in url' required>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="Carousel-item active">
+                  <div class="Input-container">
+              {% comment %} <h1 class="Input-heading"style="margin-top:200px;text-decoration:None;" >Name of Referee</h1> {% endcomment %}
+            
+              </div>
+              <div class="Input">
+                
+                <label style="margin-top:260px;margin-left:28px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">How do they know you(add 4-5 bullet points per person)</label>
+               
+                <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que16" id="Que16" class="Input-text" dir="ltr"></textarea>
+
+                {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+              </div>
+            </div>
+             
+              <div class="Carousel-item active">
+                <div class="Input-container">
+            {% comment %} <h1 class="Input-heading"style="margin-top:200px;text-decoration:None;" >Name of Referee</h1> {% endcomment %}
+          
+            </div>
+            <div class="Input">
+              <h1 style="margin-top:80px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> CV outlining your career and any relevant publication history</h1>
+              <label style="margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">A summary of what you have done as a professional.</label>
+             <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que17" id="Que17" class="Input-text" dir="ltr"></textarea>
+
+              
+            </div>
+
+            <div class="Input">
+              <label style="margin-top:20px;margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input2" class="Input-label">A list of your roles and the impact you have made while <br>in the position.</label>
+              <textarea style=" width:60%;padding:40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que18" id="Que18" class="Input-text" required></textarea>
+              {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+            </div>
+          </div>
+            <div class="Carousel-item active">
+              <div class="Input-container">
+          {% comment %} <h1 class="Input-heading"style="margin-top:200px;text-decoration:None;" >Name of Referee</h1> {% endcomment %}
+        
+          </div>
+          <div class="Input">
+            <h1 style="margin-top:180px;margin-left:15px;color:lime;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;"> CV outlining your career and any relevant publication history</h1>
+            <label style="margin-left:15px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Your achievements in a separate paragraph,especially if connected to  any <br>international projects. Make sure that they are related to your professional field.</label>
+            {% comment %} <textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que1" id="Que1" class="Input-text" dir="ltr"> </textarea> {% endcomment %}
+            <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;font-size:20px;font-family:Arial, sans-serif;" type="text" name="Que19" id="Que19" class="Input-text" placeholder="" dir="ltr"></textarea>
+
+            {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+          </div>
+        </div>
+          <div class="Carousel-item active">
+            <div class="Input-container">
+        {% comment %} <h1 class="Input-heading"style="margin-top:200px;text-decoration:None;" >Name of Referee</h1> {% endcomment %}
+      
+        </div>
+        <div class="Input">
+          <h1 style="margin-top:100px;margin-left:15px;color:lime;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;"> Personal Statement (1000 words)</h1>
+          <label style="margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Why do you want to come to the UK?</label>
+          {% comment %} <textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que1" id="Que1" class="Input-text" dir="ltr"> </textarea> {% endcomment %}
+          <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que20" id="Que20" class="Input-text" dir="ltr"></textarea>
+
+          {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+        </div>
+
+        <div class="Input">
+          <label style="margin-top:20px;margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input2" class="Input-label">What is your planned occupation in the UK?.</label>
+          <textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que21" id="Que21" class="Input-text" required></textarea>
+          {% comment %} <label for="input1" class="Input-label">Name of Referee</label> {% endcomment %}
+        </div>
+      </div>
+      <div class="Carousel-item active">
+        <div class="Input-container">
+ 
+    </div>
+    <div class="Input">
+      <h1 style="margin-top:200px;margin-left:20px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Personal Statement (1000 words)</h1>
+      <label style="margin-left:15px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">How will the UK digital technology sector benefit from your work?<br> (Examples of this might  include the technological advances you <br>will bring, the creation or new markets, the planned growth of a digital <br> technology company, the activities you will take part in outside of <br>your direct occupation.)</label>
+      <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;font-size:20px;font-family:Arial, sans-serif;" type="text" name="Que22" id="Que22" class="Input-text" placeholder="" dir="ltr"></textarea>   
+     </div>
+    </div>
+    <div class="Carousel-item active">
+      <div class="Input-container">
+
+  </div>
+  <div class="Input">
+    <h1 style="margin-top:100px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Personal Statement (1000 words)</h1>
+    <label style="margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">What are your short term plans?</label>
+    <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que23" id="Que23" class="Input-text" dir="ltr"></textarea>
+  </div>
+
+  <div class="Input">
+    <label style="margin-top:20px;margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input2" class="Input-label">What are your long term plans?</label>
+    <textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que24" id="Que24" class="Input-text" required></textarea>
+  </div> 
+</div> 
+
+<div class="Carousel-item active">
+<div class="Input-container">
+
+</div>
+<div class="Input">
+<h1 style="margin-top:100px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Personal Statement (1000 words)</h1>
+<label style="margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Which region or city of the UK are you planning to live in?</label>
+<textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que25" id="Que25" class="Input-text" dir="ltr"></textarea>
+</div>
+
+<div class="Input">
+<label style="margin-top:20px;margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input2" class="Input-label">Why are you moving from Tier-2 to Tier-1</label>
+<textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que26" id="Que26" class="Input-text" required></textarea>
+</div> 
+</div>
+
+
+<div class="Carousel-item active">
+<div class="Input-container">
+
+</div>
+<div class="Input">
+<h1 style="margin-top:100px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Recommendations</h1>
+<label style="margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Recommendation 1</label>
+<textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;" type="text" name="Que28" id="Que28" class="Input-text" dir="ltr"></textarea>
+</div>
+
+<div class="Input">
+<label style="margin-top:20px;margin-left:30px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input2" class="Input-label">Recommendation 2</label>
+<textarea style=" width:60%;padding: 40px 50px;border:1px solid wheat;border-radius: 30px;" type="text" name="Que29" id="Que29" class="Input-text" required></textarea>
+</div> 
+</div>
+ <div>
+  <div class="Carousel-item active">
+    <div class="Input-container">
+  
+  </div>
+  <div class="Input">
+  <h1 style="margin-top:200px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Recommendations</h1>
+  <label style="margin-left:15px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Recommendation 3</label>
+  <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;font-size:20px;font-family:Arial, sans-serif;" type="text" name="Que30" id="Que30" class="Input-text" placeholder="" dir="ltr"></textarea>   
+  </div>
+</div>
+<div class="Carousel-item active">
+  <div class="Input-container">
+    <h1 style="margin-top:200px;margin-left:15px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;"> Proof of recognition for work outside your immediate occupation that has<br> contributed to the advancement of the digital technology sector.<br> For example, evidence that you have gone beyond your day to day job to<br> engage in an activity that contributes to the advancement of the sector.</h1>
+    <h3 class="Input-heading" onmouseover="showTooltip()" onmouseout="hideTooltip()" style="margin-left:30%;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;">Example</h3>
+    <div class="Tooltip" id="tooltipContent" style="display: none;">
+      <p>Leading the growth of a product-led digital technology company, product or team inside a digital technology company; </p>
+      <p>Leading the growth of a product-led digital technology company, product or team inside a digital technology company;</p>
+      <p>Leading the marketing or business development at a product-led digital; technology company, demonstrably enabling substantial revenue and/or customer growth or major commercial success;</p>
+      <p>Leading the growth of a non-profit organisation or social enterprise with a specific focus on the digital technology sector;</p>
+      <p>Leading or being a significant contributor to a substantial open source project outside of applicant’s normal day-to-day job role;</p>
+      <p>Establishing, leading, or being a senior contributor to a large technology-led industry initiative outside of applicant’s normal day-to-day job role.</p>
+    </div>
+  </div>
+  <div class="Input">
+    <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px; font-size: 20px; font-family: Arial, sans-serif;" type="text" name="Que27" id="Que27" class="Input-text" placeholder="" dir="ltr"></textarea>
+  </div>
+</div>
+</div>
+<div class="Carousel-item active">
+  <div class="Input-container">
+
+</div>
+<div class="Input">
+{% comment %} <h1 style="margin-top:200px;margin-left:15px;color:lime;font-size:20px; font-family:Arial, sans-serif;margin-bottom:20px;"> Personal Statement (1000 words)</h1> {% endcomment %}
+<label style="margin-top:200px;margin-left:15px;color:white;font-size:15px; font-family:Arial, sans-serif;margin-bottom:20px;" for="input1" class="Input-label">Exceptional Promise: at least 1 example of innovation as a founder of a<br> product-led digital technology company or as an employee working on<br> a new digital field or concept.</label>
+<textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px;font-size:20px;font-family:Arial, sans-serif;" type="text" name="Que31" id="Que31" class="Input-text" placeholder="" dir="ltr"></textarea>   
+</div>
+</div>
+<div class="Carousel-item active">
+  <div class="Input-container">
+    <h1 style="margin-top: 200px; margin-left: 15px; color: white; font-size: 15px; font-family: Arial, sans-serif; margin-bottom: 20px;">Exceptional Talent: a proven track record for innovation as a founder,<br> senior executive, or employee.</h1>
+    <h3 class="Input-heading" onmouseover="showTooltip()" onmouseout="hideTooltip()" style="margin-left: 30%; color: lime; font-size: 20px; font-family: Arial, sans-serif; margin-bottom: 20px; cursor: pointer;">Example</h3>
+    <div class="Tooltip" id="tooltipContent">
+      <p>Extract from a pending/approved patent application;</p>
+      <p>For businesses — the last set of audited accounts, projections for the current financial year, articles of association, sales with customer numbers, an extract of an investment agreement. These pieces of evidence should be backed by recommendation letters that describe innovative projects within the company and highlight the impact they’ve left on the business/its product;</p>
+      <p>Evidence of employment contract with salary information including any bonus and equity options and history of earnings.</p>
+      <p>Evidence of domestic and/or international sales should show customer numbers for each country in which the company is operating, including a ranking of your distribution channels with a breakdown of when these sales were achieved for each channel (i.e. online, physical retail, 3rd party distributors, resellers etc.).</p>
+      <p>Documentation on product designs or architecture diagram clearly showing your contribution. Please ensure this evidence is no more than three A4 pages long and demonstrates your personal work, not that of the company or team of individuals;</p>
+    </div>
+  </div>
+  <div class="Input">
+    <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px; font-size: 20px; font-family: Arial, sans-serif;" type="text" name="Que27" id="Que27" class="Input-text" placeholder="" dir="ltr"></textarea>
+  </div>
+</div>
+
+<div class="Carousel-item active">
+  <div class="Input-container">
+    <h1 style="margin-top: 200px; margin-left: 15px; color: white; font-size: 15px; font-family: Arial, sans-serif; margin-bottom: 20px;">At least 1 example of proof of recognition for work outside your immediate <br>occupation that has contributed to the advancement of the sector. Have <br>undertaken continuous learning/mastery of new digital skills<br>(commercial or technical) throughout your career.</h1>
+    <h3 class="Input-heading" onmouseover="showTooltip()" onmouseout="hideTooltip()" style="margin-left: 30%; color: lime; font-size: 20px; font-family: Arial, sans-serif; margin-bottom: 20px; cursor: pointer;">Example</h3>
+    <div class="Tooltip" id="tooltipContent">
+    <p>A letter of support from a local charity foundation</p>
+    <p>Evidence of having continuously updated technical or commercial skills showing clear progression and achievement. This can be in the form of various projects or courses completed (whether at university or independently), which demonstrate a clear progression either in-depth or breadth;</p>
+    <p>GitHub profile demonstrating active participation in an open source project;</p>
+    <p>Stack Overflow profile showing significant contribution to discussions around code;</p>
+    <p>Video recordings of public talks, diplomas/certificates from tech event organisers proving your participation, screenshots that demonstrate your role as a speaker at a tech conference (the conference should be attended by no less than a 100 people).</p>
+    <p>Evidence of expertise and maintaining up-to-date knowledge of your sector trends, as shown for example by a relevant qualification, or by a talk in a prestigious conference (you should provide conference details and number of actual attendees, not registrants)</p>
+    </div>
+  </div>
+  <div class="Input">
+    <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px; font-size: 20px; font-family: Arial, sans-serif;" type="text" name="Que27" id="Que27" class="Input-text" placeholder="" dir="ltr"></textarea>
+  </div>
+</div>
+
+<div class="Carousel-item active">
+  <div class="Input-container">
+    <h1 style="margin-top: 200px; margin-left: 15px; color: white; font-size: 15px; font-family: Arial, sans-serif; margin-bottom: 20px;">Have demonstrated exceptional ability in the field by making academic contributions<br> through research published or otherwise endorsed by a research supervisor or<br> other expert.</h1>
+    <h3 class="Input-heading" onmouseover="showTooltip()" onmouseout="hideTooltip()" style="margin-left: 30%; color: lime; font-size: 20px; font-family: Arial, sans-serif; margin-bottom: 20px; cursor: pointer;">Example</h3>
+    <div class="Tooltip" id="tooltipContent">
+      <p>You have authored a well-reviewed book on digital technology or on programming or published material in a professional or major trade publication.  You must include the title, date and evidence that you are the author of such published material and any necessary translation;</p>
+      <p>Evidence of at least one significant contribution to the field in the form of a paper published in a top-tier peer-reviewed journal.  Research undertaken as part of an undergraduate or MSc thesis does not qualify for this criteria;</p>
+      <p>Evidence of awards received for outstanding applied work, supported by excellent academic achievement (a first-class degree or distinction);</p>
+      <p>A letter of support from a research supervisor or other expert in your area of expertise affirming their potential world-class standard.  This is in addition to the required letters of recommendation and must be written by another individual;</p>
+      <p>Evidence of an award that has been granted by an organisation of a similar standing and distinction to the Royal Society in the UK, as well as the selection criteria for this award.</p>
+      
+    </div>
+  </div>
+  <div class="Input">
+    <textarea style="width: 60%; padding: 40px 50px; border: 1px solid wheat; border-radius: 30px; font-size: 20px; font-family: Arial, sans-serif;" type="text" name="Que27" id="Que27" class="Input-text" placeholder="" dir="ltr"></textarea>
+  </div>
+
+
+
+</form>
+</div>
+
+</div>
+
+</body>
+
+</html>
+
+
+
+    
+  
+
+
+       
+
+
+<!--            <div class="Carousel-item active">-->
+<!--            <h4 style="color:white;">EVIDENCE</h4>-->
+<!--            <div class="Input">-->
+<!--              <input type="text" name="Q7_2" class="Input-text" placeholder="Q7_2" required>-->
+<!--              <label for="input33" class="Input-label">Q7_2</label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          -->
+</div>
+<div >
+<button class="nxt" id="prevSlide" class="carousel-control carousel-control-prev" onclick="prevSlide()">
+  <span class="arrow">&#8249;</span> Back
+</button>
+<button class='back' class="nextSlide carousel-control carousel-control-next" onclick="nextSlide()">
+  Next <span class="arrow">&#8250;</span>
+</button>
+</div>
+
+</div style='margin-right:100px;'>
+
+</div>
+
+
+
+<!--        <div class="Button-container">-->
+<!--          <button type="submit">Submit</button>-->
+<!--        </div>-->
+      </div>
+    </form>
+  </div>
+
+  <script>
+   function showTooltip() {
+  var tooltipContent = document.getElementById('tooltipContent');
+  tooltipContent.style.display = 'block';
+}
+
+function hideTooltip() {
+  var tooltipContent = document.getElementById('tooltipContent');
+  tooltipContent.style.display = 'none';
+}
+
+      // Add event listener to the form submit event
+      document.querySelector('form').addEventListener('submit', function (event) {
+          // Get the value of the textarea
+         
+          var que2Value = document.getElementById('Que4').value.trim();
+          // Check if the textarea is empty
+          if (que2Value === '') {
+              // Prevent the form submission
+              event.preventDefault();
+  
+              // Show an error message or take any appropriate action
+              alert('Please fill out the required field.');
+          }
+      });
+ 
+  
+
+
+    var slideIndex = 1;
+    showSlide(slideIndex);
+    
+    function prevSlide() {
+      showSlide(slideIndex -= 1);
+    }
+    
+    function nextSlide() {
+      if (slideIndex < document.getElementsByClassName("Carousel-item").length) {
+        showSlide(slideIndex += 1);
+      } else {
+        // Stop the slideshow when all slides have been completed
+        clearInterval(slideshowInterval);
+      }
+    }
+    
+    function showSlide(n) {
+      var slides = document.getElementsByClassName("Carousel-item");
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
+    
+    // Add event listeners for previous and next buttons
+    document.getElementById("prevSlide").addEventListener("click", function() {
+      prevSlide();
+    });
+    
+    document.getElementById("nextSlide").addEventListener("click", function() {
+      nextSlide();
+    });
+    
+    // Automatically move to the next slide every 3 seconds (adjust the interval as needed)
+    var slideshowInterval = setInterval(function() {
+      nextSlide();
+    }, 3000);
+    
+
+    
+  </script>
+</body>
+</html>

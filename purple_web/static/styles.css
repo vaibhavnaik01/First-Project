@@ -1,0 +1,186 @@
+body { 
+  background-color: #f5f5f5; 
+ 
+  background-image: url('../static/images/MicrosoftTeams-image (7).png');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;    
+}
+.grid-container {
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+grid-gap: 10px;
+}
+.image-container {
+ grid-column: span 6;
+ text-align: center;
+}
+.form-container {
+grid-column: span 6;
+}
+img{
+
+margin-top:80px;
+margin-left:90px;
+margin-right:30px;
+}
+
+.sgn{
+margin-bottom:20px;
+}
+
+
+form .error-message {
+color: red;
+font-size: 12px;
+margin-top: 5px;
+}
+form input[type="submit"] {
+display: block;
+margin: 0 auto;
+width:30%; 
+
+background-color: #5600E8;
+color: white;
+padding: 10px 15px;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+font-family:Arial, sans-serif;
+font-size:15px;
+}
+
+
+
+form input[type="submit"]:hover {
+background-color: #8852ff;
+} 
+
+
+form a {
+display: block;
+text-align: center;
+margin-top: 10px;
+color: wheat;
+}
+
+#lgn{
+margin-top:5%;
+text-decoration:None;
+
+
+
+}
+form label {
+display: block;
+
+font-weight: bold;
+
+
+}
+
+
+form input[type="date"],
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+width: 50%;
+padding: 7px;
+margin-left:20px;
+
+border: 1px solid #ccc;
+border-radius: 3px;
+background-color: transparent;
+color: white;
+}
+
+#box{
+margin-top:153px;
+margin-right:170px;
+margin-left:90px;
+height:400px;
+border: 1px solid #ccc;
+border-radius: 60px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+}
+.nxt{
+color:white;
+
+background-color:#5dbea3;
+font-size:inherit;
+height:30px;
+width:80px;
+margin-left:170px;
+margin-top:20px; 
+text-align:center;
+margin-right:20px;
+border: none;
+outline: none;
+}
+.back{
+color:white;
+
+background: linear-gradient(66.95deg,#45c4f9,rgba(136,82,255,.81) 45.31%,#8852ff 99.48%);
+text-align:center;
+font-size:inherit;
+height:30px;
+width:80px; 
+margin-top:20px; 
+border: none;
+outline: none;
+}
+.back:hover {
+transform: scale(1.10);
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+background: linear-gradient(66.95deg,#45c4f9,rgba(136,82,255,.81) 45.31%,#8852ff 99.48%);
+}
+.nxt:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+background-color:dark green;
+}
+textarea{
+background-color: transparent;
+color: white;
+border-radius: 10px;
+border: 2px solid transparent;
+outline: none;
+padding: 1em;
+line-height: 1.4;
+font-size: 18px;
+overflow: hidden;
+ 
+}
+.Input-text::placeholder {
+  color: white;
+  font-size:13px;
+  font-family:Arial,sanse-serif;
+}
+.Tooltip {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 10px;
+  width: 400px;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  top: 70%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+
+}
+
+.Input-container {
+  position: relative;
+}
+
+
+
+.Input-heading:hover + .Tooltip {
+  display: block;
+}
